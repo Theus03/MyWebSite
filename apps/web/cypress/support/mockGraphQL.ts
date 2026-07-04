@@ -93,7 +93,7 @@ export function mockGraphQL() {
               period: "Jun 2025 — Presente",
               role: "Full Stack Engineer Pleno",
               organization: "Kria Tecnologia · São Paulo",
-              description: "Sistemas críticos para mobilidade urbana.",
+              description: "Módulos de indicadores e operacional para Metrô Bahia, VLT Carioca, ViaQuatro e Metrô BH.",
               chips: [".NET 8", "RabbitMQ", "AWS"],
               current: true,
               order: 1,
@@ -158,38 +158,6 @@ export function mockGraphQL() {
         data: {
           projects: [
             {
-              id: "metro-bahia",
-              title: "Indicadores Operacionais — Metrô Bahia",
-              company: "Kria Tecnologia",
-              description:
-                "Sistema de indicadores para apoio à tomada de decisão em operações metroviárias. Desenvolvido com .NET, integra múltiplas fontes de dados.",
-              tags: [
-                { label: ".NET / C#", tone: "ACCENT" },
-                { label: "Oracle", tone: "ACCENT" },
-                { label: "Produção", tone: "GREEN" },
-              ],
-            },
-            {
-              id: "waze-traffic-api",
-              title: "API de Tráfego em Tempo Real — Waze",
-              company: "Kria Tecnologia",
-              description: "Implantação de API .NET integrada ao Waze, disponibilizando dados de tráfego em tempo real.",
-              tags: [
-                { label: "ASP.NET Core", tone: "ACCENT" },
-                { label: "AWS", tone: "GREEN" },
-              ],
-            },
-            {
-              id: "async-microservices",
-              title: "Microsserviços com Mensageria Assíncrona",
-              company: "Kria Tecnologia",
-              description: "Implementação de comunicação assíncrona entre microsserviços em C# utilizando RabbitMQ.",
-              tags: [
-                { label: "C# / .NET", tone: "ACCENT" },
-                { label: "RabbitMQ", tone: "ACCENT" },
-              ],
-            },
-            {
               id: "criativamente-care",
               title: "CriativamenteCare — Sistema de Anamnese TEA",
               company: "Uspery",
@@ -197,6 +165,16 @@ export function mockGraphQL() {
               tags: [
                 { label: "React.js", tone: "ACCENT" },
                 { label: "Acessibilidade", tone: "GREEN" },
+              ],
+            },
+            {
+              id: "finatech-sales-system",
+              title: "Sistema de Vendas e Gestão de Oportunidades — Finatech",
+              company: "Uspery",
+              description: "Processo criativo de UI/UX para o novo sistema de vendas e gestão de oportunidades da Finatech.",
+              tags: [
+                { label: "UI/UX", tone: "ACCENT" },
+                { label: "Dashboards", tone: "NEUTRAL" },
               ],
             },
           ],

@@ -1,45 +1,5 @@
 [
   {
-    "id": "metro-bahia",
-    "title": "Indicadores Operacionais — Metrô Bahia",
-    "company": "Kria Tecnologia",
-    "description": "Sistema de indicadores para apoio à tomada de decisão em operações metroviárias. Desenvolvido com .NET, integra múltiplas fontes de dados — SAP, KMOB, KCOM — garantindo consistência e rastreabilidade das informações críticas. Inclui conversor de base de cálculo, tratamento de avarias e relatórios operacionais.",
-    "tags": [
-      { "label": ".NET / C#", "tone": "accent" },
-      { "label": "Oracle", "tone": "accent" },
-      { "label": "SQL Server", "tone": "accent" },
-      { "label": "SAP Integration", "tone": "neutral" },
-      { "label": "Windows Services", "tone": "neutral" },
-      { "label": "Produção", "tone": "green" }
-    ]
-  },
-  {
-    "id": "waze-traffic-api",
-    "title": "API de Tráfego em Tempo Real — Waze",
-    "company": "Kria Tecnologia",
-    "description": "Implantação de API .NET integrada ao Waze, disponibilizando dados de tráfego em tempo real para concessionárias rodoviárias. Apoia decisões operacionais mais rápidas e assertivas com dados de fluxo e incidentes nas rodovias.",
-    "tags": [
-      { "label": "ASP.NET Core", "tone": "accent" },
-      { "label": "REST API", "tone": "accent" },
-      { "label": "Waze API", "tone": "neutral" },
-      { "label": "AWS", "tone": "green" },
-      { "label": "Produção", "tone": "green" }
-    ]
-  },
-  {
-    "id": "async-microservices",
-    "title": "Microsserviços com Mensageria Assíncrona",
-    "company": "Kria Tecnologia",
-    "description": "Implementação de comunicação assíncrona entre microsserviços em C# utilizando RabbitMQ, promovendo maior escalabilidade, resiliência e desacoplamento entre sistemas de mobilidade. Inclui tratamento de filas, dead-letter e reprocessamento de mensagens.",
-    "tags": [
-      { "label": "C# / .NET", "tone": "accent" },
-      { "label": "RabbitMQ", "tone": "accent" },
-      { "label": "Microsserviços", "tone": "neutral" },
-      { "label": "Event-Driven", "tone": "neutral" },
-      { "label": "Produção", "tone": "green" }
-    ]
-  },
-  {
     "id": "criativamente-care",
     "title": "CriativamenteCare — Sistema de Anamnese TEA",
     "company": "Uspery",
@@ -50,6 +10,17 @@
       { "label": "Chakra UI", "tone": "neutral" },
       { "label": "UI/UX", "tone": "neutral" },
       { "label": "Acessibilidade", "tone": "green" }
+    ]
+  },
+  {
+    "id": "finatech-sales-system",
+    "title": "Sistema de Vendas e Gestão de Oportunidades — Finatech",
+    "company": "Uspery",
+    "description": "Processo criativo de UI/UX para o novo sistema de vendas e gestão de oportunidades da Finatech: telas de cadastro de clientes, formulários dinâmicos e painéis com gráficos e indicadores de desempenho, otimizando a experiência dos usuários e a eficiência das equipes comerciais.",
+    "tags": [
+      { "label": "UI/UX", "tone": "accent" },
+      { "label": "Design de Produto", "tone": "neutral" },
+      { "label": "Dashboards", "tone": "neutral" }
     ]
   }
 ]

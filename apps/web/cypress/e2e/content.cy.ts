@@ -13,7 +13,7 @@ describe("Conteúdo do portfólio", () => {
 
   it("renderiza pelo menos um card de projeto vindo da API", () => {
     // O card só fica visível quando entra na viewport (animação fade-up) — rolamos até ele primeiro.
-    cy.contains("h3", "Metrô Bahia").scrollIntoView().should("be.visible");
+    cy.contains("h3", "CriativamenteCare").scrollIntoView().should("be.visible");
   });
 
   it("expõe os links reais de contato", () => {

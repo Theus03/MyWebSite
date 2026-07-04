@@ -4,7 +4,7 @@
     "period": "Jun 2025 — Presente",
     "role": "Full Stack Engineer Pleno",
     "organization": "Kria Tecnologia · São Paulo",
-    "description": "Sistemas críticos para mobilidade urbana. Integração com Waze, indicadores operacionais para o Metrô Bahia, microsserviços com RabbitMQ e AWS. Foco crescente em decisões arquiteturais e escalabilidade.",
+    "description": "Desenvolvedor .NET em soluções de tecnologia aplicada à mobilidade urbana: atuo nos módulos de indicadores e operacional para Metrô Bahia, VLT Carioca, ViaQuatro e Metrô BH, garantindo qualidade e consistência das informações operacionais. Também integrei dados de tráfego em tempo real via Waze e evoluí microsserviços assíncronos com RabbitMQ. Foco crescente em decisões arquiteturais e escalabilidade.",
     "chips": [".NET 8", "RabbitMQ", "AWS", "Oracle", "Microsserviços"],
     "current": true,
     "order": 1

@@ -30,6 +30,6 @@ describe("getUniqueTechnologies", () => {
   it("deduplica tecnologias repetidas entre projetos usando Set", () => {
     const technologies = getUniqueTechnologies();
     expect(technologies.length).toBe(new Set(technologies).size);
-    expect(technologies).toContain("RabbitMQ");
+    expect(technologies).toContain("React.js");
   });
 });
