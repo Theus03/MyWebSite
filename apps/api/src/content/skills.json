@@ -1,0 +1,50 @@
+[
+  {
+    "id": "backend",
+    "title": "Backend",
+    "skills": [
+      { "label": "C# / .NET", "strong": true },
+      { "label": "ASP.NET Core", "strong": true },
+      { "label": "APIs REST", "strong": true },
+      { "label": "Entity Framework", "strong": false },
+      { "label": "Clean Architecture", "strong": false },
+      { "label": "RabbitMQ", "strong": false }
+    ]
+  },
+  {
+    "id": "frontend",
+    "title": "Frontend",
+    "skills": [
+      { "label": "React.js", "strong": true },
+      { "label": "TypeScript", "strong": true },
+      { "label": "TailwindCSS", "strong": false },
+      { "label": "Chakra UI", "strong": false },
+      { "label": "UI/UX Design", "strong": false },
+      { "label": "Design Systems", "strong": false }
+    ]
+  },
+  {
+    "id": "data-cloud",
+    "title": "Dados & Cloud",
+    "skills": [
+      { "label": "SQL Server", "strong": true },
+      { "label": "Oracle", "strong": true },
+      { "label": "AWS", "strong": true },
+      { "label": "LINQ", "strong": false },
+      { "label": "Docker", "strong": false },
+      { "label": "CI/CD", "strong": false }
+    ]
+  },
+  {
+    "id": "architecture",
+    "title": "Arquitetura",
+    "skills": [
+      { "label": "Microsserviços", "strong": true },
+      { "label": "SOLID", "strong": true },
+      { "label": "DDD (em aprendizado)", "strong": false },
+      { "label": "CQRS (em aprendizado)", "strong": false },
+      { "label": "Event-Driven", "strong": false },
+      { "label": "IIS / Deploy", "strong": false }
+    ]
+  }
+]

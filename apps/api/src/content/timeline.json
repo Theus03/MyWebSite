@@ -1,0 +1,52 @@
+[
+  {
+    "id": "kria-pleno",
+    "period": "Jun 2025 — Presente",
+    "role": "Full Stack Engineer Pleno",
+    "organization": "Kria Tecnologia · São Paulo",
+    "description": "Sistemas críticos para mobilidade urbana. Integração com Waze, indicadores operacionais para o Metrô Bahia, microsserviços com RabbitMQ e AWS. Foco crescente em decisões arquiteturais e escalabilidade.",
+    "chips": [".NET 8", "RabbitMQ", "AWS", "Oracle", "Microsserviços"],
+    "current": true,
+    "order": 1
+  },
+  {
+    "id": "uspery",
+    "period": "Jul 2021 — Presente",
+    "role": "Co-Founder & Lead Developer",
+    "organization": "Uspery",
+    "description": "Liderança técnica e design de produtos digitais. Projetos com impacto social e foco em acessibilidade — sistemas para TEA/TDAH, gestão de vendas para fintech e design de interfaces complexas.",
+    "chips": ["React", "TypeScript", "UI/UX", "Liderança"],
+    "current": false,
+    "order": 2
+  },
+  {
+    "id": "3s-tecnologia",
+    "period": "Fev 2022 — Jun 2025",
+    "role": "Full Stack Developer Júnior",
+    "organization": "3S Tecnologia · Barueri",
+    "description": "Desenvolvimento de sistemas internos, integrações CRM/ERP, geração automática de notas fiscais com C# e Oracle, construção de API REST do zero e deploy com CI/CD.",
+    "chips": ["C#", "React", "Oracle", "CI/CD", "TailwindCSS"],
+    "current": false,
+    "order": 3
+  },
+  {
+    "id": "etec",
+    "period": "2020 — 2021",
+    "role": "Técnico em Desenvolvimento de Sistemas",
+    "organization": "ETEC Prof. Basilides de Godoy",
+    "description": "Formação técnica em TI com foco em desenvolvimento de software. Base para a atuação profissional iniciada em seguida.",
+    "chips": ["Fundamentos", "Lógica", "Web"],
+    "current": false,
+    "order": 4
+  },
+  {
+    "id": "usjt",
+    "period": "Mar 2022 — Jun 2026",
+    "role": "Bacharelado em Ciência da Computação",
+    "organization": "Universidade São Judas Tadeu",
+    "description": "Formação acadêmica em paralelo à carreira profissional. Próximo passo: Pós-graduação em Arquitetura de Software na FIAP.",
+    "chips": ["Em conclusão", "Pós FIAP em vista"],
+    "current": false,
+    "order": 5
+  }
+]

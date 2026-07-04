@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+.turbo
+.vercel
+.env
+.env.local
+cypress/videos
+cypress/screenshots
+*.log
+.DS_Store

@@ -1,0 +1,25 @@
+{
+  "name": "Matheus Leite",
+  "role": "Full Stack Engineer",
+  "availability": "Disponível para oportunidades",
+  "heroTitleLines": ["Full Stack", "Engineer & Arquiteto em", "formação"],
+  "heroEmphasis": "Engineer",
+  "bio": "Construo sistemas escaláveis com .NET e C#. Atuo na Kria Tecnologia em soluções críticas para mobilidade urbana — integração com o Waze, indicadores operacionais para o Metrô Bahia e microsserviços com RabbitMQ e AWS.",
+  "location": "Osasco, SP",
+  "email": "matheusssleite@outlook.com",
+  "phone": "+55 11 99194-6874",
+  "phoneHref": "tel:+5511991946874",
+  "linkedinUrl": "https://www.linkedin.com/in/matheusssleite",
+  "githubUrl": "https://github.com/theus03",
+  "avatarUrl": "/avatar.jpg",
+  "heroChips": [
+    { "label": ".NET / C#", "tone": "accent" },
+    { "label": "React + TypeScript", "tone": "accent" },
+    { "label": "RabbitMQ", "tone": "green" },
+    { "label": "AWS", "tone": "green" },
+    { "label": "SQL Server", "tone": "neutral" },
+    { "label": "Oracle", "tone": "neutral" },
+    { "label": "Docker", "tone": "neutral" },
+    { "label": "Microsserviços", "tone": "neutral" }
+  ]
+}

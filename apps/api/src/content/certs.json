@@ -1,0 +1,44 @@
+[
+  {
+    "id": "cloud-fundamentals",
+    "name": "Cloud Fundamentals, Administration & Solution Architect",
+    "issuer": "FIAP Nano Course",
+    "icon": "☁️",
+    "status": "done"
+  },
+  {
+    "id": "ui-design",
+    "name": "User Interface — UI Design",
+    "issuer": "Certificação Profissional",
+    "icon": "🎨",
+    "status": "done"
+  },
+  {
+    "id": "design-thinking",
+    "name": "Design Thinking",
+    "issuer": "Certificação Profissional",
+    "icon": "💡",
+    "status": "done"
+  },
+  {
+    "id": "ai-computacional",
+    "name": "Inteligência Artificial e Computacional",
+    "issuer": "FIAP Nano Course",
+    "icon": "🤖",
+    "status": "progress"
+  },
+  {
+    "id": "clean-architecture",
+    "name": "Clean Architecture & Software Architecture",
+    "issuer": "Udemy",
+    "icon": "🏗️",
+    "status": "progress"
+  },
+  {
+    "id": "agentes-ia",
+    "name": "Agentes de IA",
+    "issuer": "FIAP Nano Course",
+    "icon": "🧠",
+    "status": "progress"
+  }
+]

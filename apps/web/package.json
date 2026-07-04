@@ -1,0 +1,46 @@
+{
+  "name": "@portfolio/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "lint": "eslint src --ext .ts,.tsx",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "start-server-and-test preview http://localhost:4173 \"cypress run\"",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {
+    "@portfolio/api": "*",
+    "@portfolio/graphql-client": "*",
+    "@portfolio/mf-certs": "*",
+    "@portfolio/mf-contact": "*",
+    "@portfolio/mf-hero": "*",
+    "@portfolio/mf-projects": "*",
+    "@portfolio/mf-skills": "*",
+    "@portfolio/mf-timeline": "*",
+    "@portfolio/ui": "*",
+    "@tanstack/react-query": "^5.59.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.0.13"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vercel/node": "^3.2.24",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "cypress": "^13.15.0",
+    "cypress-axe": "^1.5.0",
+    "axe-core": "^4.10.0",
+    "postcss": "^8.4.47",
+    "start-server-and-test": "^2.0.8",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8"
+  }
+}
