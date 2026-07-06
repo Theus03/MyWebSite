@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import { ScrollProgress } from "@portfolio/ui";
 import { Nav } from "./components/Nav";
 import { SectionBoundary } from "./components/SectionBoundary";
 
@@ -18,6 +19,7 @@ const Contact = lazy(() => import("@portfolio/mf-contact").then((m) => ({ defaul
 export function App() {
   return (
     <>
+      <ScrollProgress />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-md focus:bg-text focus:px-4 focus:py-2 focus:text-bg"

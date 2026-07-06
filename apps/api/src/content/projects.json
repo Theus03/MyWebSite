@@ -10,7 +10,9 @@
       { "label": "Chakra UI", "tone": "neutral" },
       { "label": "UI/UX", "tone": "neutral" },
       { "label": "Acessibilidade", "tone": "green" }
-    ]
+    ],
+    "imageUrl": "/projects/criativamente-care.jpg",
+    "url": "https://criativamentecare.com/"
   },
   {
     "id": "finatech-sales-system",

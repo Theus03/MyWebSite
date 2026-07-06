@@ -13,6 +13,8 @@ const PROJECTS_QUERY = /* GraphQL */ `
         label
         tone
       }
+      imageUrl
+      url
     }
   }
 `;

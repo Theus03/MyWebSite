@@ -1,6 +1,7 @@
 export * from "./Button";
 export * from "./Container";
 export * from "./FadeUp";
+export * from "./ScrollProgress";
 export * from "./SectionFallback";
 export * from "./Chip";
 export * from "./Tag";

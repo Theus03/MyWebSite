@@ -49,6 +49,10 @@ export interface Project {
   company: string;
   description: string;
   tags: Tag[];
+  /** Screenshot exibido no hover do card — opcional, nem todo projeto tem imagem disponível. */
+  imageUrl?: string;
+  /** Link externo para o projeto em produção — opcional, nem todo projeto é público. */
+  url?: string;
 }
 
 export interface Tag {

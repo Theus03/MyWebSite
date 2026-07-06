@@ -60,7 +60,7 @@ export function Nav() {
       className="fixed inset-x-0 top-0 z-50 flex h-[60px] items-center justify-between border-b border-border bg-[rgba(248,247,244,0.88)] px-8 backdrop-blur-md"
     >
       <a href="#hero" className="font-serif text-lg tracking-[-0.02em] text-text no-underline">
-        ML.
+        MATHEUS LEITE
       </a>
       <ul className="hidden gap-8 md:flex">
         {links.map((link) => (

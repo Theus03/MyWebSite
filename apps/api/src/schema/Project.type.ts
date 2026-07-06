@@ -26,4 +26,10 @@ export class Project {
 
   @Field(() => [Tag])
   tags!: Tag[];
+
+  @Field(() => String, { nullable: true, description: "Screenshot do projeto exibido no hover do card" })
+  imageUrl?: string;
+
+  @Field(() => String, { nullable: true, description: "Link externo para o projeto em produção" })
+  url?: string;
 }

@@ -17,6 +17,12 @@ export function Timeline() {
           {timeline.map((item, i) => (
             <li key={item.id}>
               <FadeUp delayMs={(i % 4) * 80} className="relative pb-12 last:pb-0">
+                {item.current && (
+                  <span
+                    className="absolute -left-[2.05rem] top-1.5 h-[15px] w-[15px] animate-ping rounded-full bg-accent/60 motion-reduce:hidden"
+                    aria-hidden="true"
+                  />
+                )}
                 <span
                   className={`absolute -left-[2.05rem] top-1.5 h-[15px] w-[15px] rounded-full border-2 ${
                     item.current ? "border-accent bg-accent" : "border-border-strong bg-surface"

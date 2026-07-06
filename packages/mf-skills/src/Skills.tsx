@@ -13,9 +13,9 @@ export function Skills() {
           title="Stack técnica"
           subtitle="Tecnologias que uso no dia a dia em produção."
         />
-        <FadeUp className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
-          {skillGroups.map((group) => (
-            <div key={group.id} className="bg-surface p-6">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-4">
+          {skillGroups.map((group, i) => (
+            <FadeUp key={group.id} delayMs={i * 80} className="bg-surface p-6">
               <div className="mb-4 text-[11px] font-medium uppercase tracking-[0.1em] text-accent">
                 {group.title}
               </div>
@@ -33,9 +33,9 @@ export function Skills() {
                   </span>
                 ))}
               </div>
-            </div>
+            </FadeUp>
           ))}
-        </FadeUp>
+        </div>
       </Container>
     </section>
   );
