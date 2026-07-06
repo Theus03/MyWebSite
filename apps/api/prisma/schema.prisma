@@ -1,0 +1,74 @@
+// Schema do mini-CRM (clientes / sistemas / melhorias) do painel apps/admin.
+// O conteúdo público do portfólio (apps/api/src/content/*.json) não passa por aqui.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum ClientStatus {
+  ATIVO
+  PAUSADO
+  ENCERRADO
+}
+
+enum SystemStatus {
+  EM_DESENVOLVIMENTO
+  EM_PRODUCAO
+  MANUTENCAO
+  DESATIVADO
+}
+
+enum ImprovementStatus {
+  PLANEJADA
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
+
+model Client {
+  id        String       @id @default(cuid())
+  name      String
+  company   String?
+  email     String?
+  phone     String?
+  notes     String?
+  status    ClientStatus @default(ATIVO)
+  systems   System[]
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model System {
+  id           String        @id @default(cuid())
+  name         String
+  description  String?
+  url          String?
+  repoUrl      String?
+  status       SystemStatus  @default(EM_PRODUCAO)
+  client       Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId     String
+  improvements Improvement[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([clientId])
+}
+
+model Improvement {
+  id          String            @id @default(cuid())
+  title       String
+  description String?
+  status      ImprovementStatus @default(PLANEJADA)
+  priority    Int               @default(0)
+  system      System            @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId    String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([systemId])
+}

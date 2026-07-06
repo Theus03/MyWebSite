@@ -5,6 +5,10 @@ import { SkillResolver } from "./resolvers/Skill.resolver";
 import { ProjectResolver } from "./resolvers/Project.resolver";
 import { TimelineResolver } from "./resolvers/Timeline.resolver";
 import { CertificateResolver } from "./resolvers/Certificate.resolver";
+import { AuthResolver } from "./resolvers/Auth.resolver";
+import { ClientResolver } from "./resolvers/Client.resolver";
+import { SystemResolver } from "./resolvers/System.resolver";
+import { ImprovementResolver } from "./resolvers/Improvement.resolver";
 
 const resolvers: BuildSchemaOptions["resolvers"] = [
   ProfileResolver,
@@ -12,6 +16,10 @@ const resolvers: BuildSchemaOptions["resolvers"] = [
   ProjectResolver,
   TimelineResolver,
   CertificateResolver,
+  AuthResolver,
+  ClientResolver,
+  SystemResolver,
+  ImprovementResolver,
 ];
 
 let schemaPromise: ReturnType<typeof buildSchema> | undefined;

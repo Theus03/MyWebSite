@@ -80,3 +80,73 @@ export interface Certificate {
   /** Espelha o enum GraphQL `CertStatus` — serializado como "DONE"/"PROGRESS". */
   status: "DONE" | "PROGRESS";
 }
+
+/**
+ * Tipos do mini-CRM (apps/admin) — espelham apps/api/src/schema/Client.type.ts,
+ * System.type.ts, Improvement.type.ts e crmEnums.ts.
+ */
+
+export type ClientStatus = "ATIVO" | "PAUSADO" | "ENCERRADO";
+
+export type SystemStatus = "EM_DESENVOLVIMENTO" | "EM_PRODUCAO" | "MANUTENCAO" | "DESATIVADO";
+
+export type ImprovementStatus = "PLANEJADA" | "EM_ANDAMENTO" | "CONCLUIDA" | "CANCELADA";
+
+export interface Client {
+  id: string;
+  name: string;
+  company?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  notes?: string | null;
+  status: ClientStatus;
+  systems: System[];
+  createdAt: string;
+}
+
+export interface System {
+  id: string;
+  name: string;
+  description?: string | null;
+  url?: string | null;
+  repoUrl?: string | null;
+  status: SystemStatus;
+  clientId: string;
+  client?: Client;
+  improvements: Improvement[];
+  createdAt: string;
+}
+
+export interface Improvement {
+  id: string;
+  title: string;
+  description?: string | null;
+  status: ImprovementStatus;
+  priority: number;
+  systemId: string;
+  createdAt: string;
+}
+
+export interface ClientInput {
+  name: string;
+  company?: string;
+  email?: string;
+  phone?: string;
+  notes?: string;
+  status?: ClientStatus;
+}
+
+export interface SystemInput {
+  name: string;
+  description?: string;
+  url?: string;
+  repoUrl?: string;
+  status?: SystemStatus;
+}
+
+export interface ImprovementInput {
+  title: string;
+  description?: string;
+  status?: ImprovementStatus;
+  priority?: number;
+}
