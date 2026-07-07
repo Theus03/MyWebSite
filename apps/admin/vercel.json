@@ -3,5 +3,6 @@
   "framework": "vite",
   "buildCommand": "cd ../.. && npx turbo run build --filter=@portfolio/admin",
   "installCommand": "cd ../.. && npm install",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
