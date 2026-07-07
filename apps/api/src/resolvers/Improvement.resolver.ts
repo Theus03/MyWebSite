@@ -15,6 +15,7 @@ export class ImprovementResolver {
         description: input.description,
         status: input.status,
         priority: input.priority,
+        dueDate: input.dueDate,
         systemId,
       },
     });
@@ -29,6 +30,7 @@ export class ImprovementResolver {
         description: input.description,
         status: input.status,
         priority: input.priority,
+        dueDate: input.dueDate,
       },
     });
   }

@@ -17,6 +17,15 @@ export const colors = {
   // mínimo WCAG AA de 4.5:1 para texto normal) — escurecido para ~5.2:1.
   accent2: "#047857",
   accent2Soft: "#ECFDF5",
+  // Cores extras pro funil do Kanban (apps/admin) — mesmo padrão dos pares acima
+  // (tom saturado ~700 + fundo bem claro ~50, ambos testados pra manter contraste
+  // AA de texto normal sobre o próprio *Soft).
+  warning: "#B45309",
+  warningSoft: "#FEF3E7",
+  violet: "#6D28D9",
+  violetSoft: "#F3EEFF",
+  danger: "#B91C1C",
+  dangerSoft: "#FEF2F2",
   border: "rgba(26,25,22,0.09)",
   borderStrong: "rgba(26,25,22,0.16)",
 } as const;

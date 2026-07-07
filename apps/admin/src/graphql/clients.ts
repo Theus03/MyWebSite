@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import type { Client, ClientInput } from "@portfolio/types";
+import type { Client, ClientInput, ClientStatus } from "@portfolio/types";
 import { gqlClient } from "./client";
 
 const CLIENT_FIELDS = `
@@ -9,6 +9,7 @@ const CLIENT_FIELDS = `
   email
   phone
   notes
+  logoUrl
   status
   createdAt
 `;
@@ -59,6 +60,19 @@ const UPDATE_CLIENT_MUTATION = /* GraphQL */ `
 const DELETE_CLIENT_MUTATION = /* GraphQL */ `
   mutation DeleteClient($id: ID!) {
     deleteClient(id: $id)
+  }
+`;
+
+const UPDATE_CLIENT_STATUS_MUTATION = /* GraphQL */ `
+  mutation UpdateClientStatus($id: ID!, $status: ClientStatus!) {
+    updateClientStatus(id: $id, status: $status) {
+      ${CLIENT_FIELDS}
+      systems {
+        id
+        name
+        status
+      }
+    }
   }
 `;
 
@@ -115,5 +129,34 @@ export function useDeleteClient() {
       await gqlClient.request(DELETE_CLIENT_MUTATION, { id });
     },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["clients"] }),
+  });
+}
+
+/** Move um cliente de coluna no Kanban — atualização otimista pra o drag-and-drop parecer instantâneo. */
+export function useUpdateClientStatus() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ id, status }: { id: string; status: ClientStatus }) => {
+      const data = await gqlClient.request<{ updateClientStatus: Client }>(UPDATE_CLIENT_STATUS_MUTATION, {
+        id,
+        status,
+      });
+      return data.updateClientStatus;
+    },
+    onMutate: async ({ id, status }) => {
+      await queryClient.cancelQueries({ queryKey: ["clients"] });
+      const previous = queryClient.getQueryData<Client[]>(["clients"]);
+      if (previous) {
+        queryClient.setQueryData<Client[]>(
+          ["clients"],
+          previous.map((client) => (client.id === id ? { ...client, status } : client)),
+        );
+      }
+      return { previous };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previous) queryClient.setQueryData(["clients"], context.previous);
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey: ["clients"] }),
   });
 }

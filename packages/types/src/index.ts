@@ -86,7 +86,14 @@ export interface Certificate {
  * System.type.ts, Improvement.type.ts e crmEnums.ts.
  */
 
-export type ClientStatus = "ATIVO" | "PAUSADO" | "ENCERRADO";
+/** Ordem das colunas do Kanban — da ponta do funil (Prospecção) até o fim (Encerrado). */
+export type ClientStatus =
+  | "PROSPECCAO"
+  | "NEGOCIACAO"
+  | "ATIVO"
+  | "MANUTENCAO"
+  | "PAUSADO"
+  | "ENCERRADO";
 
 export type SystemStatus = "EM_DESENVOLVIMENTO" | "EM_PRODUCAO" | "MANUTENCAO" | "DESATIVADO";
 
@@ -99,6 +106,7 @@ export interface Client {
   email?: string | null;
   phone?: string | null;
   notes?: string | null;
+  logoUrl?: string | null;
   status: ClientStatus;
   systems: System[];
   createdAt: string;
@@ -114,6 +122,7 @@ export interface System {
   clientId: string;
   client?: Client;
   improvements: Improvement[];
+  ideas: Idea[];
   createdAt: string;
 }
 
@@ -123,6 +132,16 @@ export interface Improvement {
   description?: string | null;
   status: ImprovementStatus;
   priority: number;
+  /** Prazo estimado para concluir a atividade — ISO date string, ou null se não definido. */
+  dueDate?: string | null;
+  systemId: string;
+  createdAt: string;
+}
+
+export interface Idea {
+  id: string;
+  title: string;
+  done: boolean;
   systemId: string;
   createdAt: string;
 }
@@ -133,6 +152,7 @@ export interface ClientInput {
   email?: string;
   phone?: string;
   notes?: string;
+  logoUrl?: string;
   status?: ClientStatus;
 }
 
@@ -149,4 +169,9 @@ export interface ImprovementInput {
   description?: string;
   status?: ImprovementStatus;
   priority?: number;
+  dueDate?: string;
+}
+
+export interface IdeaInput {
+  title: string;
 }

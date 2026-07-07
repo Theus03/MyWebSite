@@ -11,7 +11,10 @@ datasource db {
 }
 
 enum ClientStatus {
+  PROSPECCAO
+  NEGOCIACAO
   ATIVO
+  MANUTENCAO
   PAUSADO
   ENCERRADO
 }
@@ -37,7 +40,8 @@ model Client {
   email     String?
   phone     String?
   notes     String?
-  status    ClientStatus @default(ATIVO)
+  logoUrl   String?
+  status    ClientStatus @default(PROSPECCAO)
   systems   System[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
@@ -53,6 +57,7 @@ model System {
   client       Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId     String
   improvements Improvement[]
+  ideas        Idea[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
@@ -65,10 +70,22 @@ model Improvement {
   description String?
   status      ImprovementStatus @default(PLANEJADA)
   priority    Int               @default(0)
+  dueDate     DateTime?
   system      System            @relation(fields: [systemId], references: [id], onDelete: Cascade)
   systemId    String
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
+
+  @@index([systemId])
+}
+
+model Idea {
+  id        String   @id @default(cuid())
+  title     String
+  done      Boolean  @default(false)
+  system    System   @relation(fields: [systemId], references: [id], onDelete: Cascade)
+  systemId  String
+  createdAt DateTime @default(now())
 
   @@index([systemId])
 }

@@ -9,6 +9,7 @@ import { AuthResolver } from "./resolvers/Auth.resolver";
 import { ClientResolver } from "./resolvers/Client.resolver";
 import { SystemResolver } from "./resolvers/System.resolver";
 import { ImprovementResolver } from "./resolvers/Improvement.resolver";
+import { IdeaResolver } from "./resolvers/Idea.resolver";
 
 const resolvers: BuildSchemaOptions["resolvers"] = [
   ProfileResolver,
@@ -20,6 +21,7 @@ const resolvers: BuildSchemaOptions["resolvers"] = [
   ClientResolver,
   SystemResolver,
   ImprovementResolver,
+  IdeaResolver,
 ];
 
 let schemaPromise: ReturnType<typeof buildSchema> | undefined;

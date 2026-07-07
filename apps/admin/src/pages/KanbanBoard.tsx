@@ -1,17 +1,19 @@
 import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
 import type { ClientStatus } from "@portfolio/types";
-import { useClients, useCreateClient } from "../graphql/clients";
-import { StatusBadge, STATUS_LABELS } from "../components/StatusBadge";
+import { useClients, useCreateClient, useUpdateClientStatus } from "../graphql/clients";
 import { SubmitButton } from "../components/SubmitButton";
 import { SelectField, TextAreaField, TextField } from "../components/FormField";
+import { STATUS_LABELS } from "../components/StatusBadge";
+import { KANBAN_STAGES } from "../components/kanbanStages";
+import { KanbanColumn } from "../components/KanbanColumn";
+import { ClientModal } from "../components/ClientModal";
 
-const STATUS_OPTIONS: ClientStatus[] = ["ATIVO", "PAUSADO", "ENCERRADO"];
-
-export function ClientList() {
+export function KanbanBoard() {
   const { data: clients, isLoading, isError } = useClients();
   const createClient = useCreateClient();
+  const updateStatus = useUpdateClientStatus();
   const [showForm, setShowForm] = useState(false);
+  const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,6 +26,7 @@ export function ClientList() {
         email: String(data.get("email") || "") || undefined,
         phone: String(data.get("phone") || "") || undefined,
         notes: String(data.get("notes") || "") || undefined,
+        logoUrl: String(data.get("logoUrl") || "") || undefined,
         status: data.get("status") as ClientStatus,
       },
       {
@@ -37,12 +40,10 @@ export function ClientList() {
 
   return (
     <div>
-      <div className="mb-8 flex items-center justify-between gap-4">
+      <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <h1 className="font-serif text-2xl tracking-[-0.02em] text-text">Clientes</h1>
-          <p className="text-sm text-text-muted">
-            Acompanhe seus clientes e os sistemas que você desenvolve para eles.
-          </p>
+          <p className="text-sm text-text-muted">Arraste os cards entre as colunas conforme o cliente avança.</p>
         </div>
         <SubmitButton onClick={() => setShowForm((v) => !v)}>{showForm ? "Cancelar" : "Novo cliente"}</SubmitButton>
       </div>
@@ -50,16 +51,17 @@ export function ClientList() {
       {showForm && (
         <form
           onSubmit={handleSubmit}
-          className="mb-10 grid gap-4 rounded-xl border border-border bg-surface p-6 sm:grid-cols-2"
+          className="mb-8 grid gap-4 rounded-xl border border-border bg-surface p-6 sm:grid-cols-2"
         >
           <TextField label="Nome" name="name" required />
           <TextField label="Empresa" name="company" />
           <TextField label="E-mail" name="email" type="email" />
           <TextField label="Telefone" name="phone" />
-          <SelectField label="Situação" name="status" defaultValue="ATIVO">
-            {STATUS_OPTIONS.map((status) => (
-              <option key={status} value={status}>
-                {STATUS_LABELS[status]}
+          <TextField label="Logo (URL da imagem)" name="logoUrl" type="url" />
+          <SelectField label="Situação" name="status" defaultValue="PROSPECCAO">
+            {KANBAN_STAGES.map((stage) => (
+              <option key={stage.status} value={stage.status}>
+                {STATUS_LABELS[stage.status]}
               </option>
             ))}
           </SelectField>
@@ -79,26 +81,22 @@ export function ClientList() {
 
       {isLoading && <p className="text-sm text-text-muted">Carregando clientes…</p>}
       {isError && <p className="text-sm text-red-600">Não foi possível carregar os clientes.</p>}
-      {clients && clients.length === 0 && <p className="text-sm text-text-muted">Nenhum cliente cadastrado ainda.</p>}
 
-      <div className="grid gap-4">
-        {clients?.map((client) => (
-          <Link
-            key={client.id}
-            to={`/clients/${client.id}`}
-            className="block rounded-xl border border-border bg-surface p-6 no-underline transition-all hover:-translate-y-0.5 hover:border-accent"
-          >
-            <div className="mb-2 flex items-center justify-between gap-4">
-              <h2 className="font-serif text-lg text-text">{client.name}</h2>
-              <StatusBadge status={client.status} />
-            </div>
-            {client.company && <p className="mb-1 text-sm text-text-muted">{client.company}</p>}
-            <p className="text-xs uppercase tracking-[0.08em] text-text-faint">
-              {client.systems.length} sistema{client.systems.length === 1 ? "" : "s"}
-            </p>
-          </Link>
-        ))}
-      </div>
+      {clients && (
+        <div className="flex gap-4 overflow-x-auto pb-4">
+          {KANBAN_STAGES.map((stage) => (
+            <KanbanColumn
+              key={stage.status}
+              stage={stage}
+              clients={clients.filter((client) => client.status === stage.status)}
+              onCardClick={setSelectedClientId}
+              onDropClient={(id, status) => updateStatus.mutate({ id, status })}
+            />
+          ))}
+        </div>
+      )}
+
+      {selectedClientId && <ClientModal clientId={selectedClientId} onClose={() => setSelectedClientId(null)} />}
     </div>
   );
 }

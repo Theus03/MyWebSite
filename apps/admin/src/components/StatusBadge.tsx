@@ -3,12 +3,14 @@ import type { ClientStatus, ImprovementStatus, SystemStatus } from "@portfolio/t
 type Status = ClientStatus | SystemStatus | ImprovementStatus;
 
 export const STATUS_LABELS: Record<Status, string> = {
+  PROSPECCAO: "Prospecção",
+  NEGOCIACAO: "Em Negociação",
   ATIVO: "Ativo",
+  MANUTENCAO: "Em Manutenção",
   PAUSADO: "Pausado",
   ENCERRADO: "Encerrado",
   EM_DESENVOLVIMENTO: "Em desenvolvimento",
   EM_PRODUCAO: "Em produção",
-  MANUTENCAO: "Manutenção",
   DESATIVADO: "Desativado",
   PLANEJADA: "Planejada",
   EM_ANDAMENTO: "Em andamento",
@@ -17,12 +19,14 @@ export const STATUS_LABELS: Record<Status, string> = {
 };
 
 const TONE_CLASSES: Record<Status, string> = {
+  PROSPECCAO: "border-border-strong text-text-muted bg-surface2",
+  NEGOCIACAO: "border-warning/20 text-warning bg-warning-soft",
   ATIVO: "border-accent2/20 text-accent2 bg-accent2-soft",
-  PAUSADO: "border-border-strong text-text-muted bg-surface2",
-  ENCERRADO: "border-border text-text-faint bg-surface2",
+  MANUTENCAO: "border-accent/20 text-accent bg-accent-soft",
+  PAUSADO: "border-violet/20 text-violet bg-violet-soft",
+  ENCERRADO: "border-danger/20 text-danger bg-danger-soft",
   EM_DESENVOLVIMENTO: "border-accent/20 text-accent bg-accent-soft",
   EM_PRODUCAO: "border-accent2/20 text-accent2 bg-accent2-soft",
-  MANUTENCAO: "border-border-strong text-text-muted bg-surface2",
   DESATIVADO: "border-border text-text-faint bg-surface2",
   PLANEJADA: "border-border-strong text-text-muted bg-surface2",
   EM_ANDAMENTO: "border-accent/20 text-accent bg-accent-soft",

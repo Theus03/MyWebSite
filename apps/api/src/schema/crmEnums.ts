@@ -1,8 +1,11 @@
 import { registerEnumType } from "type-graphql";
 
-/** Situação comercial de um cliente do painel. */
+/** Situação comercial de um cliente do painel — colunas do funil no Kanban, em ordem. */
 export enum ClientStatus {
+  PROSPECCAO = "PROSPECCAO",
+  NEGOCIACAO = "NEGOCIACAO",
   ATIVO = "ATIVO",
+  MANUTENCAO = "MANUTENCAO",
   PAUSADO = "PAUSADO",
   ENCERRADO = "ENCERRADO",
 }

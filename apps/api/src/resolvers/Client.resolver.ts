@@ -1,6 +1,7 @@
 import { Arg, ID, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import { Client } from "../schema/Client.type";
 import { ClientInput } from "../schema/inputs/ClientInput";
+import { ClientStatus } from "../schema/crmEnums";
 import { requireAuth } from "../auth/requireAuth";
 import { prisma } from "../db/prisma";
 
@@ -26,6 +27,7 @@ export class ClientResolver {
         email: input.email,
         phone: input.phone,
         notes: input.notes,
+        logoUrl: input.logoUrl,
         status: input.status,
       },
       include: { systems: true },
@@ -42,10 +44,16 @@ export class ClientResolver {
         email: input.email,
         phone: input.phone,
         notes: input.notes,
+        logoUrl: input.logoUrl,
         status: input.status,
       },
       include: { systems: true },
     });
+  }
+
+  @Mutation(() => Client, { description: "Move um cliente para outro estágio do funil (usado pelo drag-and-drop do Kanban)" })
+  updateClientStatus(@Arg("id", () => ID) id: string, @Arg("status", () => ClientStatus) status: ClientStatus) {
+    return prisma.client.update({ where: { id }, data: { status }, include: { systems: true } });
   }
 
   @Mutation(() => Boolean, { description: "Remove um cliente e seus sistemas/melhorias" })

@@ -9,7 +9,7 @@ import { prisma } from "../db/prisma";
 export class SystemResolver {
   @Query(() => System, { nullable: true, description: "Um sistema específico, com suas melhorias e o cliente dono" })
   system(@Arg("id", () => ID) id: string) {
-    return prisma.system.findUnique({ where: { id }, include: { improvements: true, client: true } });
+    return prisma.system.findUnique({ where: { id }, include: { improvements: true, ideas: true, client: true } });
   }
 
   @Mutation(() => System, { description: "Cadastra um novo sistema/site/app para um cliente" })

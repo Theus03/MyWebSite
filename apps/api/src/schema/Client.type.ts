@@ -22,6 +22,9 @@ export class Client {
   @Field(() => String, { nullable: true })
   notes?: string | null;
 
+  @Field(() => String, { nullable: true, description: "URL de uma imagem da logo do cliente" })
+  logoUrl?: string | null;
+
   @Field(() => ClientStatus)
   status!: ClientStatus;
 

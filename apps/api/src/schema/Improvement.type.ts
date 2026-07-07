@@ -18,6 +18,9 @@ export class Improvement {
   @Field(() => Int, { description: "Quanto maior, mais prioritária" })
   priority!: number;
 
+  @Field(() => Date, { nullable: true, description: "Prazo estimado para concluir a atividade" })
+  dueDate?: Date | null;
+
   @Field(() => ID)
   systemId!: string;
 

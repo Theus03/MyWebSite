@@ -23,6 +23,13 @@ const SYSTEM_QUERY = /* GraphQL */ `
         description
         status
         priority
+        dueDate
+        createdAt
+      }
+      ideas {
+        id
+        title
+        done
         createdAt
       }
     }

@@ -18,6 +18,9 @@ export class ClientInput {
   @Field(() => String, { nullable: true })
   notes?: string;
 
+  @Field(() => String, { nullable: true })
+  logoUrl?: string;
+
   @Field(() => ClientStatus, { nullable: true })
   status?: ClientStatus;
 }

@@ -2,6 +2,7 @@ import { Field, ID, ObjectType } from "type-graphql";
 import { SystemStatus } from "./crmEnums";
 import { Client } from "./Client.type";
 import { Improvement } from "./Improvement.type";
+import { Idea } from "./Idea.type";
 
 @ObjectType({ description: "Sistema, site ou app desenvolvido para um cliente" })
 export class System {
@@ -31,6 +32,9 @@ export class System {
 
   @Field(() => [Improvement])
   improvements!: Improvement[];
+
+  @Field(() => [Idea])
+  ideas!: Idea[];
 
   @Field(() => Date)
   createdAt!: Date;

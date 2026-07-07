@@ -14,4 +14,7 @@ export class ImprovementInput {
 
   @Field(() => Int, { nullable: true })
   priority?: number;
+
+  @Field(() => Date, { nullable: true })
+  dueDate?: Date;
 }

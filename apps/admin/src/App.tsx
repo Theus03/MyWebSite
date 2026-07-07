@@ -2,9 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { AdminLayout } from "./components/AdminLayout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Login } from "./pages/Login";
-import { ClientList } from "./pages/ClientList";
-import { ClientDetail } from "./pages/ClientDetail";
-import { SystemDetail } from "./pages/SystemDetail";
+import { KanbanBoard } from "./pages/KanbanBoard";
 
 export function App() {
   return (
@@ -15,27 +13,7 @@ export function App() {
         element={
           <ProtectedRoute>
             <AdminLayout>
-              <ClientList />
-            </AdminLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/clients/:clientId"
-        element={
-          <ProtectedRoute>
-            <AdminLayout>
-              <ClientDetail />
-            </AdminLayout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/clients/:clientId/systems/:systemId"
-        element={
-          <ProtectedRoute>
-            <AdminLayout>
-              <SystemDetail />
+              <KanbanBoard />
             </AdminLayout>
           </ProtectedRoute>
         }
