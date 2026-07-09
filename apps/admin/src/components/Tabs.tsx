@@ -3,9 +3,11 @@ import type { ReactNode } from "react";
 export interface TabItem {
   id: string;
   label: ReactNode;
+  /** Contador opcional (nº de pendências, ideias, etc.) mostrado como badge dentro do pill. */
+  badge?: number;
 }
 
-/** Lista de abas controlada — o painel de cada aba fica por conta de quem usa (renderiza condicionalmente por activeId). */
+/** Lista de abas em formato pill — o painel de cada aba fica por conta de quem usa (renderiza condicionalmente por activeId). */
 export function Tabs({
   tabs,
   activeId,
@@ -18,23 +20,33 @@ export function Tabs({
   className?: string;
 }) {
   return (
-    <div role="tablist" className={`flex flex-wrap gap-1 border-b border-border ${className}`}>
-      {tabs.map((tab) => (
-        <button
-          key={tab.id}
-          type="button"
-          role="tab"
-          aria-selected={tab.id === activeId}
-          onClick={() => onChange(tab.id)}
-          className={`rounded-t-lg px-3.5 py-2 text-[13px] font-medium transition-colors ${
-            tab.id === activeId
-              ? "border border-b-0 border-border bg-surface text-text"
-              : "text-text-muted hover:text-text"
-          }`}
-        >
-          {tab.label}
-        </button>
-      ))}
+    <div role="tablist" className={`flex flex-wrap gap-1.5 ${className}`}>
+      {tabs.map((tab) => {
+        const isActive = tab.id === activeId;
+        return (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            onClick={() => onChange(tab.id)}
+            className={`inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors ${
+              isActive ? "bg-accent text-white" : "bg-surface2 text-text-muted hover:bg-border hover:text-text"
+            }`}
+          >
+            {tab.label}
+            {typeof tab.badge === "number" && tab.badge > 0 && (
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                  isActive ? "bg-white/25 text-white" : "bg-surface text-text-faint"
+                }`}
+              >
+                {tab.badge}
+              </span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 }

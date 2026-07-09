@@ -22,6 +22,14 @@ const CLIENTS_QUERY = /* GraphQL */ `
         id
         name
         status
+        improvements {
+          id
+          status
+        }
+        ideas {
+          id
+          done
+        }
       }
     }
   }
@@ -145,18 +153,27 @@ export function useUpdateClientStatus() {
     },
     onMutate: async ({ id, status }) => {
       await queryClient.cancelQueries({ queryKey: ["clients"] });
-      const previous = queryClient.getQueryData<Client[]>(["clients"]);
-      if (previous) {
+      await queryClient.cancelQueries({ queryKey: ["client", id] });
+      const previousList = queryClient.getQueryData<Client[]>(["clients"]);
+      const previousClient = queryClient.getQueryData<Client>(["client", id]);
+      if (previousList) {
         queryClient.setQueryData<Client[]>(
           ["clients"],
-          previous.map((client) => (client.id === id ? { ...client, status } : client)),
+          previousList.map((client) => (client.id === id ? { ...client, status } : client)),
         );
       }
-      return { previous };
+      if (previousClient) {
+        queryClient.setQueryData<Client>(["client", id], { ...previousClient, status });
+      }
+      return { previousList, previousClient, id };
     },
     onError: (_error, _variables, context) => {
-      if (context?.previous) queryClient.setQueryData(["clients"], context.previous);
+      if (context?.previousList) queryClient.setQueryData(["clients"], context.previousList);
+      if (context?.previousClient) queryClient.setQueryData(["client", context.id], context.previousClient);
     },
-    onSettled: () => queryClient.invalidateQueries({ queryKey: ["clients"] }),
+    onSettled: (_data, _error, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["clients"] });
+      queryClient.invalidateQueries({ queryKey: ["client", variables.id] });
+    },
   });
 }

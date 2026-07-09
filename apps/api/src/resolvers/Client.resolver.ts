@@ -10,7 +10,10 @@ import { prisma } from "../db/prisma";
 export class ClientResolver {
   @Query(() => [Client], { description: "Todos os clientes cadastrados, com seus sistemas" })
   clients() {
-    return prisma.client.findMany({ include: { systems: true }, orderBy: { createdAt: "desc" } });
+    return prisma.client.findMany({
+      include: { systems: { include: { improvements: true, ideas: true } } },
+      orderBy: { createdAt: "desc" },
+    });
   }
 
   @Query(() => Client, { nullable: true, description: "Um cliente específico com seus sistemas" })

@@ -1,5 +1,6 @@
 import type { DragEvent } from "react";
 import type { Client } from "@portfolio/types";
+import { IconLayers } from "./icons";
 
 export function KanbanCard({
   client,
@@ -16,26 +17,29 @@ export function KanbanCard({
       draggable
       onDragStart={onDragStart}
       onClick={onClick}
-      className="w-full cursor-grab rounded-lg border border-border bg-surface p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent active:cursor-grabbing"
+      className="w-full cursor-grab rounded-xl border border-border bg-surface p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-md active:cursor-grabbing"
     >
-      <div className="mb-1 flex items-center gap-2">
+      <div className="mb-2 flex items-center gap-2.5">
         {client.logoUrl ? (
           <img
             src={client.logoUrl}
             alt=""
-            className="h-6 w-6 flex-shrink-0 rounded-full border border-border object-cover"
+            className="h-8 w-8 flex-shrink-0 rounded-full border border-border object-cover"
           />
         ) : (
-          <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-surface2 text-[10px] font-medium text-text-faint">
+          <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent">
             {client.name.charAt(0).toUpperCase()}
           </span>
         )}
-        <h3 className="truncate text-sm font-medium text-text">{client.name}</h3>
+        <div className="min-w-0">
+          <h3 className="truncate text-sm font-medium text-text">{client.name}</h3>
+          {client.company && <p className="truncate text-xs text-text-muted">{client.company}</p>}
+        </div>
       </div>
-      {client.company && <p className="mb-2 truncate text-xs text-text-muted">{client.company}</p>}
-      <p className="text-[11px] uppercase tracking-[0.06em] text-text-faint">
+      <div className="flex items-center gap-1 text-[11px] font-medium text-text-faint">
+        <IconLayers className="h-3.5 w-3.5" />
         {client.systems.length} sistema{client.systems.length === 1 ? "" : "s"}
-      </p>
+      </div>
     </button>
   );
 }

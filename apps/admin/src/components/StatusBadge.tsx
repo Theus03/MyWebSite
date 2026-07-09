@@ -18,7 +18,7 @@ export const STATUS_LABELS: Record<Status, string> = {
   CANCELADA: "Cancelada",
 };
 
-const TONE_CLASSES: Record<Status, string> = {
+export const TONE_CLASSES: Record<Status, string> = {
   PROSPECCAO: "border-border-strong text-text-muted bg-surface2",
   NEGOCIACAO: "border-warning/20 text-warning bg-warning-soft",
   ATIVO: "border-accent2/20 text-accent2 bg-accent2-soft",

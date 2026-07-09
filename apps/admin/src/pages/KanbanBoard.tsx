@@ -7,6 +7,8 @@ import { STATUS_LABELS } from "../components/StatusBadge";
 import { KANBAN_STAGES } from "../components/kanbanStages";
 import { KanbanColumn } from "../components/KanbanColumn";
 import { ClientModal } from "../components/ClientModal";
+import { StatsRow } from "../components/StatsRow";
+import { IconPlus } from "../components/icons";
 
 export function KanbanBoard() {
   const { data: clients, isLoading, isError } = useClients();
@@ -45,8 +47,19 @@ export function KanbanBoard() {
           <h1 className="font-serif text-2xl tracking-[-0.02em] text-text">Clientes</h1>
           <p className="text-sm text-text-muted">Arraste os cards entre as colunas conforme o cliente avança.</p>
         </div>
-        <SubmitButton onClick={() => setShowForm((v) => !v)}>{showForm ? "Cancelar" : "Novo cliente"}</SubmitButton>
+        <SubmitButton onClick={() => setShowForm((v) => !v)}>
+          {showForm ? (
+            "Cancelar"
+          ) : (
+            <>
+              <IconPlus className="h-4 w-4" />
+              Novo cliente
+            </>
+          )}
+        </SubmitButton>
       </div>
+
+      {clients && clients.length > 0 && <StatsRow clients={clients} />}
 
       {showForm && (
         <form

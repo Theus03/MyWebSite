@@ -1,9 +1,10 @@
 import { useState, type FormEvent } from "react";
 import type { Improvement, ImprovementStatus } from "@portfolio/types";
-import { useCreateImprovement, useUpdateImprovement } from "../graphql/improvements";
+import { useCreateImprovement, useDeleteImprovement, useUpdateImprovement } from "../graphql/improvements";
 import { TextAreaField, TextField } from "./FormField";
 import { SubmitButton } from "./SubmitButton";
 import { STATUS_LABELS } from "./StatusBadge";
+import { IconPlus, IconTrash } from "./icons";
 
 const IMPROVEMENT_STATUS_OPTIONS: ImprovementStatus[] = ["PLANEJADA", "EM_ANDAMENTO", "CONCLUIDA", "CANCELADA"];
 
@@ -23,6 +24,7 @@ function formatDueDate(dueDate?: string | null): string | null {
 export function BacklogTab({ systemId, improvements }: { systemId: string; improvements: Improvement[] }) {
   const createImprovement = useCreateImprovement(systemId);
   const updateImprovement = useUpdateImprovement(systemId);
+  const deleteImprovement = useDeleteImprovement(systemId);
   const [showForm, setShowForm] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -50,8 +52,15 @@ export function BacklogTab({ systemId, improvements }: { systemId: string; impro
     <div>
       <div className="mb-4 flex items-center justify-between">
         <h4 className="text-sm font-medium text-text">Atividades planejadas</h4>
-        <SubmitButton variant="outline" onClick={() => setShowForm((v) => !v)}>
-          {showForm ? "Cancelar" : "Nova atividade"}
+        <SubmitButton onClick={() => setShowForm((v) => !v)}>
+          {showForm ? (
+            "Cancelar"
+          ) : (
+            <>
+              <IconPlus className="h-4 w-4" />
+              Nova atividade
+            </>
+          )}
         </SubmitButton>
       </div>
 
@@ -94,27 +103,39 @@ export function BacklogTab({ systemId, improvements }: { systemId: string; impro
                   </p>
                 )}
               </div>
-              <select
-                aria-label={`Status de "${improvement.title}"`}
-                value={improvement.status}
-                onChange={(event) =>
-                  updateImprovement.mutate({
-                    id: improvement.id,
-                    input: {
-                      title: improvement.title,
-                      status: event.target.value as ImprovementStatus,
-                      dueDate: improvement.dueDate ?? undefined,
-                    },
-                  })
-                }
-                className="rounded-lg border border-border-strong bg-surface px-3 py-1.5 text-xs text-text outline-none focus-visible:border-accent"
-              >
-                {IMPROVEMENT_STATUS_OPTIONS.map((status) => (
-                  <option key={status} value={status}>
-                    {STATUS_LABELS[status]}
-                  </option>
-                ))}
-              </select>
+              <div className="flex flex-shrink-0 items-center gap-1.5">
+                <select
+                  aria-label={`Status de "${improvement.title}"`}
+                  value={improvement.status}
+                  onChange={(event) =>
+                    updateImprovement.mutate({
+                      id: improvement.id,
+                      input: {
+                        title: improvement.title,
+                        status: event.target.value as ImprovementStatus,
+                        dueDate: improvement.dueDate ?? undefined,
+                      },
+                    })
+                  }
+                  className="rounded-lg border border-border-strong bg-surface px-3 py-1.5 text-xs text-text outline-none focus-visible:border-accent"
+                >
+                  {IMPROVEMENT_STATUS_OPTIONS.map((status) => (
+                    <option key={status} value={status}>
+                      {STATUS_LABELS[status]}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={() => deleteImprovement.mutate(improvement.id)}
+                  disabled={deleteImprovement.isPending}
+                  aria-label={`Excluir "${improvement.title}"`}
+                  title="Excluir"
+                  className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-text-faint transition-colors hover:bg-danger-soft hover:text-danger disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  <IconTrash className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         ))}

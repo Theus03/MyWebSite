@@ -1,11 +1,13 @@
 import { useState, type FormEvent } from "react";
 import type { Idea } from "@portfolio/types";
-import { useCreateIdea, useToggleIdea } from "../graphql/ideas";
+import { useCreateIdea, useDeleteIdea, useToggleIdea } from "../graphql/ideas";
+import { IconPlus, IconTrash } from "./icons";
 
 /** Checklist simples de ideias/sugestões futuras do cliente pro sistema — sem status, só feito/pendente. */
 export function IdeasTab({ systemId, ideas }: { systemId: string; ideas: Idea[] }) {
   const createIdea = useCreateIdea(systemId);
   const toggleIdea = useToggleIdea(systemId);
+  const deleteIdea = useDeleteIdea(systemId);
   const [title, setTitle] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -31,12 +33,22 @@ export function IdeasTab({ systemId, ideas }: { systemId: string; ideas: Idea[] 
               type="checkbox"
               checked={idea.done}
               onChange={() => toggleIdea.mutate(idea.id)}
-              className="h-4 w-4 accent-accent"
+              className="h-4 w-4 flex-shrink-0 accent-accent"
               aria-label={`Marcar "${idea.title}" como ${idea.done ? "pendente" : "concluída"}`}
             />
-            <span className={`text-sm ${idea.done ? "text-text-faint line-through" : "text-text"}`}>
+            <span className={`flex-1 text-sm ${idea.done ? "text-text-faint line-through" : "text-text"}`}>
               {idea.title}
             </span>
+            <button
+              type="button"
+              onClick={() => deleteIdea.mutate(idea.id)}
+              disabled={deleteIdea.isPending}
+              aria-label={`Excluir "${idea.title}"`}
+              title="Excluir"
+              className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full text-text-faint transition-colors hover:bg-danger-soft hover:text-danger disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <IconTrash className="h-4 w-4" />
+            </button>
           </li>
         ))}
       </ul>
@@ -54,9 +66,9 @@ export function IdeasTab({ systemId, ideas }: { systemId: string; ideas: Idea[] 
           type="submit"
           disabled={createIdea.isPending || !title.trim()}
           aria-label="Adicionar ideia"
-          className="rounded-lg border border-border-strong px-4 py-2 text-sm font-medium text-text transition-colors hover:bg-surface2 disabled:cursor-not-allowed disabled:opacity-60"
+          className="flex items-center justify-center rounded-lg bg-text px-3 text-bg transition-opacity hover:bg-[#333] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          +
+          <IconPlus className="h-4 w-4" />
         </button>
       </form>
     </div>

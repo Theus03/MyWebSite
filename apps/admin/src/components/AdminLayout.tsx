@@ -1,31 +1,61 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useLogout } from "../graphql/auth";
-import { SubmitButton } from "./SubmitButton";
+import { IconBoard, IconLogout } from "./icons";
 
 /**
- * Wrapper próprio (não o Container de @portfolio/ui, que trava em max-w-900px
- * pensado pro portfólio público) — o Kanban usa a largura da tela toda, sem
- * teto de largura, pra caber as 6 colunas sem precisar de scroll horizontal.
+ * Layout com sidebar de ícones + fundo próprio (admin-bg) — visualmente
+ * separado do portfólio público, que usa o Container/bg bege compartilhados
+ * em packages/ui. Sem teto de largura no conteúdo principal, pra caber as
+ * 6 colunas do Kanban sem scroll horizontal em telas normais.
  */
 export function AdminLayout({ children }: { children: ReactNode }) {
   const logout = useLogout();
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b border-border">
-        <div className="flex items-center justify-between px-6 py-5 md:px-10">
-          <Link to="/" className="font-serif text-lg tracking-[-0.02em] text-text no-underline">
-            Painel — Matheus Leite
+    <div className="flex min-h-screen bg-admin-bg">
+      <aside className="flex w-20 flex-shrink-0 flex-col items-center border-r border-border bg-surface py-6">
+        <Link
+          to="/"
+          aria-label="Painel — Matheus Leite"
+          className="mb-8 flex h-10 w-10 items-center justify-center rounded-xl bg-text font-serif text-lg text-bg no-underline"
+        >
+          M
+        </Link>
+
+        <nav className="flex flex-1 flex-col items-center gap-2">
+          <Link
+            to="/"
+            aria-current="page"
+            title="Clientes"
+            className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent no-underline"
+          >
+            <IconBoard className="h-5 w-5" />
           </Link>
-          <SubmitButton variant="outline" onClick={() => logout.mutate()} disabled={logout.isPending}>
-            Sair
-          </SubmitButton>
-        </div>
-      </header>
-      <main>
-        <div className="px-6 py-10 md:px-10">{children}</div>
-      </main>
+        </nav>
+
+        <button
+          type="button"
+          onClick={() => logout.mutate()}
+          disabled={logout.isPending}
+          title="Sair"
+          aria-label="Sair"
+          className="flex h-11 w-11 items-center justify-center rounded-xl text-text-faint transition-colors hover:bg-surface2 hover:text-text disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <IconLogout className="h-5 w-5" />
+        </button>
+      </aside>
+
+      <div className="flex-1">
+        <header className="border-b border-border bg-surface">
+          <div className="px-6 py-5 md:px-10">
+            <p className="font-serif text-lg tracking-[-0.02em] text-text">Painel — Matheus Leite</p>
+          </div>
+        </header>
+        <main>
+          <div className="px-6 py-8 md:px-10">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

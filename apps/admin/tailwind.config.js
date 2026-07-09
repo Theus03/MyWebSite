@@ -32,6 +32,10 @@ export default {
         "danger-soft": "#FEF2F2",
         border: "rgba(26,25,22,0.09)",
         "border-strong": "rgba(26,25,22,0.16)",
+        // Só existe aqui (não espelha packages/ui/tokens.ts nem apps/web) — fundo
+        // frio/neutro que diferencia visualmente a ferramenta de negócio do
+        // portfólio público, que usa o "bg" bege quente acima.
+        "admin-bg": "#F3F5FA",
       },
       fontFamily: {
         serif: ['"DM Serif Display"', "serif"],
